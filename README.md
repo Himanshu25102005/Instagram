@@ -86,13 +86,13 @@ Your exact project architecture looks like this:
 
 ### 🖥️ Login Page:
 
-![Login Page](routes/screenshots/scs1.png)
+![Login Page](screenshots/scs1.png)
 
 ---
 
 ### 👤 Profile Page:
 
-![Profile Page](routes/screenshots/scs2.png)
+![Profile Page](screenshots/scs2.png)
 
 ---
 
