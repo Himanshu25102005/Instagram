@@ -14,7 +14,7 @@ This project was built for learning **backend development**, **file uploads**, *
 - Dynamic Feed Grid (Masonry-style like Instagram Explore)
 - Profile Page with Dynamic User Data
 - Modular MVC-like Folder Structure
-- Tailwind CSS powered responsive UI (Dark Themed)
+- Tailwind CSS powered responsive UI (Dark Themed).
 
 ---
 
