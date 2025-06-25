@@ -12,7 +12,7 @@ This project was built for learning **backend development**, **file uploads**, *
 - User Authentication (Signup/Login/Logout)
 - Image Uploading (For profile pics & post images)
 - Dynamic Feed Grid (Masonry-style like Instagram Explore).
-- Profile Page with Dynamic User Data
+- Profile Page with Dynamic User Data.
 - Modular MVC-like Folder Structure
 - Tailwind CSS powered responsive UI (Dark Themed).
 
