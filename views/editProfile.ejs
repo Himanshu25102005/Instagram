@@ -1,0 +1,110 @@
+<% include ./partials/header.ejs %>
+
+    <div class="min-h-screen bg-black text-white flex">
+        <!-- Sidebar/Navbar -->
+        <nav class="w-72 p-8 space-y-8 border-r border-zinc-700 hidden md:block">
+            <h1 class="text-4xl font-bold mb-12 font-serif">Instagram</h1>
+            <ul class="space-y-6 text-lg">
+                <li><a href="/home"><i class="ri-home-5-line mr-4"></i> Home</a></li>
+                <li><a href="/search"><i class="ri-search-line mr-4"></i> Search</a></li>
+                <li><a href="/feed"><i class="ri-compass-3-line mr-4"></i> Explore</a></li>
+                <li><a href="/create"><i class="ri-add-box-line mr-4"></i> Create</a></li>
+                <li><a href="/profile"><i class="ri-user-line mr-4"></i> Profile</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex justify-center py-10">
+            <div class="max-w-2xl w-full px-8">
+                <h2 class="text-2xl font-semibold mb-8">Edit profile</h2>
+                
+                <!-- Profile Photo Section -->
+                <div class="bg-zinc-900 rounded-lg p-6 mb-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-16 h-16">
+                            <img src="/images/uploads/<%= user.profileImage%>" class="rounded-full w-full h-full object-cover" />
+                        </div>
+                        <div>
+                            <p class="font-semibold text-base">
+                                <%= user.username %>
+                            </p>
+                            <p class="text-sm text-gray-400">
+                                <%= user.name %>
+                            </p>
+                        </div>
+                        <div class="ml-auto">
+                            <button class="change-photo bg-blue-600 text-white px-4 py-2 rounded text-sm font-medium">Change photo</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden file upload form -->
+                <form action="/upload" class="uploads" method="post" enctype="multipart/form-data" hidden>
+                    <input type="file" name="file">
+                    <button type="submit" class="bg-sky-200">Submit</button>
+                </form>
+
+                <!-- Edit Profile Form -->
+                <form class="space-y-6 editprofile" accept="/profile/edit" method="post">
+                    <!-- Username -->
+                    <div>
+                        <label class="block text-sm font-medium mb-2" >Email</label>
+                        <input type="text" name="email" placeholder="Eg: abcd@gmail.com" class="w-full bg-zinc-800 border border-zinc-700 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500" />
+                    </div>
+
+                    <!-- Bio -->
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Bio</label>
+                        <textarea rows="3" name="description" placeholder="Some Description" class="w-full bg-zinc-800 border border-zinc-700 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500 resize-none"></textarea><!-- 
+                        <div class="text-right text-xs text-gray-400 mt-1">0 / 150</div> -->
+                    </div>
+
+                    <!-- Contact -->
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Contact</label>
+                        <input type="number" name="contact" placeholder="Phone number" class="w-full bg-zinc-800 border border-zinc-700 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500" />
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex justify-end pt-4">
+                        <button type="submit" class="bg-blue-600 text-white px-6 py-2 subbtn rounded font-medium hover:bg-blue-700" hidden>Submit</button>
+
+                        <a href="/profile">
+                            <button style="margin-left: 5px;" class="bg-red-600 text-white px-6 py-2 subbtn rounded font-medium hover:bg-blue-700" >Go Back</button>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-xs text-center text-gray-500 mt-10 mb-4">
+        <p>Meta · About · Blog · Jobs · Help · API · Privacy · Terms · Locations · Threads · Contact Uploading &
+            Non-Users · Meta Verified</p>
+        <p class="mt-2">© 2025 Instagram from Meta</p>
+    </footer>
+
+    <script>
+        let changePhotoBtn = document.querySelector(".change-photo");
+        let form = document.querySelector(".uploads");
+
+        changePhotoBtn.addEventListener("click", () => {
+            document.querySelector(".uploads input").click();
+        });
+
+        document.querySelector(".uploads input").addEventListener("change", () => {
+            form.submit();
+        });
+
+
+        let editprofile = document.querySelector(".editprofile");
+        let subbtn = document.querySelector(".subbtn")
+
+        editprofile.addEventListener("change", ()=>{
+            subbtn.hidden = false;
+        })
+
+    </script>
+
+    <% include ./partials/footer.ejs %>

@@ -1,0 +1,45 @@
+<% include ./partials/header.ejs %>
+
+<div  class="bg-black text-white">
+      <!-- Navbar -->
+    <nav class="w-72 p-8 space-y-8 border-r border-zinc-700 hidden md:block fixed h-full">
+        <h1 class="text-4xl font-bold mb-12 font-serif">Instagram</h1>
+        <ul class="space-y-6 text-lg">
+            <li><a href="/home"><i class="ph ph-house mr-4"></i> Home</a></li>
+            <li><a href="/search"><i class="ph ph-magnifying-glass mr-4"></i> Search</a></li>
+            <li><a href="/feed"><i class="ph ph-compass mr-4"></i> Explore</a></li>
+            <li><a href="/create"><i class="ph ph-plus-square mr-4"></i> Create</a></li>
+            <li><a href="/profile"><i class="ph ph-user mr-4"></i> Profile</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Feed Grid -->
+    <main class="ml-72 p-6">
+        <div class="masonry-grid">
+
+            <% for(let i = 0; i<users.length; i++) { %>
+              <%  for(let j = 0; j<users[i].posts.length; j++) { %>
+
+                <img src="/images/uploads/<%= users[i].posts[j].image %>"  class="mb-4 w-full break-inside-avoid"
+                alt="Post Image 1">
+
+             <% }%>
+
+            <%}%>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-xs text-center text-gray-500 mt-10 mb-4 ml-72">
+        <p>Meta · About · Blog · Jobs · Help · API · Privacy · Terms · Locations · Threads · Contact Uploading &
+            Non-Users · Meta Verified</p>
+        <p class="mt-2">© 2025 Instagram from Meta</p>
+    </footer>
+</div>
+  
+
+
+    <% include ./partials/footer.ejs %>
+
+    

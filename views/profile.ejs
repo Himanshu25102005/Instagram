@@ -1,0 +1,135 @@
+<% include ./partials/header.ejs %>
+
+    <div class="min-h-screen bg-black text-white flex">
+        <!-- Sidebar/Navbar -->
+        <nav class="w-72 p-8 space-y-8 border-r border-zinc-700 hidden md:block">
+            <h1 class="text-4xl font-bold mb-12 font-serif">Instagram</h1>
+            <ul class="space-y-6 text-lg">
+                <li><a href="/home"><i class="ri-home-5-line mr-4"></i> Home</a></li>
+                <li><a href="/search"><i class="ri-search-line mr-4"></i> Search</a></li>
+                <li><a href="/feed"><i class="ri-compass-3-line mr-4"></i> Explore</a></li>
+                <li><a href="/create"><i class="ri-add-box-line mr-4"></i> Create</a></li>
+                <li><a href="/profile"><i class="ri-user-line mr-4"></i> Profile</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex justify-center py-10">
+            <div class="max-w-4xl w-full px-8">
+                <!-- Profile Header -->
+                <section class="flex items-start space-x-16 mb-12">
+                    <div class="relative w-40 h-40 flex-shrink-0">
+                        <img src="/images/uploads/<%= user.profileImage%>"
+                            class="rounded-full w-full h-full object-cover border" />
+                        <i style="cursor:grab;"
+                            class=" edit text-zinc-800 ri-pencil-fill absolute bottom-2 right-2 bg-white p-2 rounded-full text-sm"></i>
+                    </div>
+
+                    <div class="flex-1 pt-4">
+                        <div class="flex items-center space-x-6 mb-6">
+                            <h2 class="text-3xl font-light">
+                                <%= user.username %>
+                            </h2>
+                            <a href="/profile/edit">
+                                <button class="px-6 py-2 bg-zinc-700 text-sm rounded font-medium">Edit Profile</button>
+                            </a>
+                            <a href="/logout">
+                                <button type="submit"
+                                    class="px-6 py-2 bg-red-600 text-sm rounded font-medium">Logout</button>
+                            </a>
+                        </div>
+
+                        <form action="/upload" class="uploads" method="post" enctype="multipart/form-data" hidden>
+                            <input type="file" name="file">
+                            <button type="submit" class="bg-sky-200">Submit</button>
+                        </form>
+
+                        <div class="flex space-x-10 text-base mb-6">
+                            <span><strong>
+                                    <%= user.posts.length%>
+                                </strong> Posts </span>
+                            <span><strong>393</strong> followers</span>
+                            <span><strong>371</strong> following</span>
+                        </div>
+
+                        <div class="text-sm">
+                            <p class="font-bold text-base">
+                                <%=user.name%>
+                            </p>
+                            <p class="text-sm mt-1">
+                                <%= user.description %>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Story Section -->
+                <section class="flex space-x-6 mb-12">
+                    <div class="text-center">
+                        <img src="https://i.pinimg.com/474x/07/90/09/0790098e6c8e4dc646bbc99a07acb827.jpg"
+                            class="w-20 h-20 rounded-full border-2 border-zinc-600 mx-auto" />
+                        <p class="text-xs mt-2">Some Story Line</p>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="w-20 h-20 rounded-full bg-zinc-800 flex items-center justify-center text-3xl border-2 border-zinc-600 mx-auto">
+                            +</div>
+                        <p class="text-xs mt-2">New</p>
+                    </div>
+                </section>
+
+                <!-- Tabs -->
+                <div class="border-t border-zinc-700 pt-6 text-sm flex space-x-16 justify-center mb-6">
+                    <button class="font-semibold border-t-2 border-white pb-2 uppercase tracking-wide">POSTS</button>
+                    <button class="text-gray-400 uppercase tracking-wide">SAVED</button>
+                </div>
+
+                <!-- Posts Grid -->
+                <section class="grid grid-cols-3 gap-1">
+                    <% for (let i=0; i < user.posts.length; i++) { %>
+                        <div class="relative group w-full h-80 overflow-hidden">
+
+                            <!-- Post Image -->
+                            <img src="/images/uploads/<%= user.posts[i].image %>" alt="" class="w-full h-full object-cover" />
+
+                            <!-- Hover Overlay with Likes -->
+                            <div
+                                class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200">
+                                <div class="flex items-center space-x-2 text-white text-lg font-medium">
+                                    <i class="ri-heart-line"></i>
+                                    <span>
+                                        <%= user.posts[i].likes.length %>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <% } %>
+                </section>
+
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-xs text-center text-gray-500 mt-10 mb-4">
+        <p>Meta · About · Blog · Jobs · Help · API · Privacy · Terms · Locations · Threads · Contact Uploading &
+            Non-Users · Meta Verified</p>
+        <p class="mt-2">© 2025 Instagram from Meta</p>
+    </footer>
+
+    <script>
+        let edit = document.querySelector(".edit");
+        let form = document.querySelector(".uploads")
+
+        edit.addEventListener("click", () => {
+            document.querySelector(".uploads input").click();
+        })
+
+        document.querySelector(".uploads input").addEventListener("change", () => {
+            form.submit();
+        })
+    </script>
+
+    <% include ./partials/footer.ejs %>

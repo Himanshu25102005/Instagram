@@ -1,0 +1,100 @@
+<%include ./partials/header.ejs%>
+
+    <div class="min-h-screen bg-black text-white flex flex-col items-center justify-center py-8 px-4">
+
+        <!-- Form Container -->
+        <div class="w-[350px] bg-zinc-900 border border-zinc-700 p-13 rounded-md">
+            <h1 class="text-4xl font-bold text-center font-serif mb-4">Instagram</h1>
+            <p class="text-sm text-center text-gray-300 mb-4">Sign up to see photos and videos<br />from your friends.
+            </p>
+
+            <!-- Facebook Login -->
+            <button class="w-full bg-blue-600 text-white py-2 rounded font-semibold text-sm mb-4">
+                <i class="fab fa-facebook mr-2"></i> Log in with Facebook
+            </button>
+
+            <!-- OR Separator -->
+            <div class="flex items-center mb-4">
+                <div class="flex-grow h-px bg-gray-600"></div>
+                <span class="mx-2 text-xs text-gray-400 font-semibold">OR</span>
+                <div class="flex-grow h-px bg-gray-600"></div>
+            </div>
+
+            <!-- Input Fields -->
+            <form class="space-y-2" action="/register" method="post">
+                <input type="text" placeholder="Email" name="email"
+                    class="w-full text-sm px-3 py-2 bg-zinc-800 border border-zinc-600 rounded focus:outline-none">
+                <input type="password" placeholder="Password" name="password"
+                    class="w-full text-sm px-3 py-2 bg-zinc-800 border border-zinc-600 rounded focus:outline-none">
+                <input type="text" placeholder="Full Name" name="name"
+                    class="w-full text-sm px-3 py-2 bg-zinc-800 border border-zinc-600 rounded focus:outline-none">
+                <input type="text" placeholder="Username" name="username"
+                    class="w-full text-sm px-3 py-2 bg-zinc-800 border border-zinc-600 rounded focus:outline-none">
+
+                <input type="submit" class="w-full bg-blue-600 text-white py-2 rounded font-semibold text-sm mt-4"
+                    value="Sign Up">
+            </form>
+            <!-- Learn More -->
+            <p class="text-xs text-gray-400 mt-2">
+                People who use our service may have uploaded your contact information to Instagram.
+                <span class="text-blue-400 cursor-pointer">Learn More</span>
+            </p>
+
+            <!-- Terms & Policies -->
+            <p class="text-xs text-gray-400 mt-2">
+                By signing up, you agree to our
+                <span class="text-blue-400 cursor-pointer"> Terms</span>,
+                <span class="text-blue-400 cursor-pointer"> Privacy Policy</span>
+                and
+                <span class="text-blue-400 cursor-pointer"> Cookies Policy</span>.
+            </p>
+
+
+
+        </div>
+
+        <!-- Login Box -->
+        <div class="w-[350px] mt-4 bg-zinc-900 border border-zinc-700 text-center py-4 rounded-md">
+            <p class="text-sm text-gray-300">
+                Have an account?
+                <a href="/"> <span class="text-blue-400 cursor-pointer font-semibold">Log in</span>
+                </a>
+            </p>
+        </div>
+
+        <!-- Get the App Section -->
+        <div class="mt-6 text-center">
+            <p class="text-sm mb-2">Get the app.</p>
+            <div class="flex justify-center gap-2">
+                <a
+                    href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=ig_mid%3D4AE2DE90-1DBA-4B3E-92A9-2E44D6263D9C%26utm_content%3Dlo%26utm_source%3Dinstagramweb%26utm_medium%3Dbadge">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/512px-Google_Play_Store_badge_EN.svg.png"
+                        class="h-10"> </a>
+                <a
+                    href="ms-windows-store://pdp/?productid=9nblggh5l9xt&referrer=appbadge&source=www.instagram.com&mode=mini&pos=0%2C0%2C1536%2C864">
+                    <img src="https://developer.microsoft.com/en-us/store/badges/images/English_get-it-from-MS.png"
+                        class="h-10">
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer Links -->
+        <footer
+            class="text-[10px] text-gray-500 mt-6 flex flex-wrap justify-center gap-x-4 gap-y-1 max-w-[700px] text-center">
+            <span>Meta</span>
+            <span>About</span>
+            <span>Blog</span>
+            <span>Jobs</span>
+            <span>Help</span>
+            <span>API</span>
+            <span>Privacy</span>
+            <span>Terms</span>
+            <span>Locations</span>
+            <span>Instagram Lite</span>
+            <span>Threads</span>
+            <span>Contact Uploading & Non-Users</span>
+            <span>Meta Verified</span>
+        </footer>
+    </div>
+
+    <%include ./partials/footer.ejs%>
