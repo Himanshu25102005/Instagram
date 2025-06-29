@@ -147,4 +147,11 @@ router.get("/search", isloggedin, async (req, res) => {
   res.render("search", { users, results, error });
 });
 
+
+router.get("/home", isloggedin, async (req, res) => {
+  const users = await userModel.find().populate("posts");
+  const loguser = await userModel.findOne({ username: req.session.passport.user });
+  res.render("home", { users, loguser });
+});
+
 module.exports = router;

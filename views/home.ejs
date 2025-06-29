@@ -1,0 +1,122 @@
+<% include ./partials/header.ejs %>
+
+    <div class="bg-black text-white min-h-screen">
+        <!-- Navbar (Left Sidebar) -->
+        <nav class="w-72 p-8 space-y-8 border-r border-zinc-700 hidden md:block fixed h-full">
+            <h1 class="text-4xl font-bold mb-12 font-serif">Instagram</h1>
+            <ul class="space-y-6 text-lg">
+                <li><a href="/home"><i class="ph ph-house mr-4"></i> Home</a></li>
+                <li><a href="/search"><i class="ph ph-magnifying-glass mr-4"></i> Search</a></li>
+                <li><a href="/feed"><i class="ph ph-compass mr-4"></i> Explore</a></li>
+                <li><a href="/create"><i class="ph ph-plus-square mr-4"></i> Create</a></li>
+                <li><a href="/profile"><i class="ph ph-user mr-4"></i> Profile</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="ml-100 flex justify-between max-w-6xl mx-auto">
+
+            <!-- Feed Area (Center) -->
+            <main class="p-6 max-w-2xl mx-auto w-full">
+
+                <!-- Stories Section -->
+                <div class="flex space-x-4 overflow-x-auto mb-6 scrollbar-hide">
+                    <!-- Story 1 -->
+                    <div class="flex flex-col items-center">
+                        <img src="/images/uploads/story1.jpg" alt="Story"
+                            class="w-14 h-14 rounded-full border-2 border-pink-500 p-0.5">
+                        <p class="text-xs mt-1">jagrat.shiv...</p>
+                    </div>
+                    <!-- Story 2 -->
+                    <div class="flex flex-col items-center">
+                        <img src="/images/uploads/story2.jpg" alt="Story"
+                            class="w-14 h-14 rounded-full border-2 border-pink-500 p-0.5">
+                        <p class="text-xs mt-1">himanshi.0...</p>
+                    </div>
+                    <!-- Story 3 -->
+                    <div class="flex flex-col items-center">
+                        <img src="/images/uploads/story3.jpg" alt="Story"
+                            class="w-14 h-14 rounded-full border-2 border-pink-500 p-0.5">
+                        <p class="text-xs mt-1">maisa.may...</p>
+                    </div>
+                    <!-- Add More Stories -->
+                </div>
+
+
+                <!-- Feed Posts -->
+                <% let totalUsers=users.length; let numberOfPosts=Math.min(5, totalUsers); // If users < 5, adjust let
+                    selectedIndexes=[]; while (selectedIndexes.length < numberOfPosts) { let
+                    ranNum=Math.floor(Math.random() * totalUsers); if (!selectedIndexes.includes(ranNum) &&
+                    users[ranNum].posts.length> 0) {
+                    selectedIndexes.push(ranNum);
+                    }
+                    }
+                    %>
+
+                    <div class="space-y-8">
+                        <% selectedIndexes.forEach((ranNum)=> { %>
+                            <div class="bg-zinc-900 rounded-lg overflow-hidden shadow-md">
+                                <div class="p-4 flex items-center space-x-3">
+                                    <img src="/images/uploads/<%= users[ranNum].profileImage %>"
+                                        class="w-10 h-10 rounded-full object-cover" alt="User">
+                                    <p class="font-semibold">
+                                        <%= users[ranNum].username %>
+                                    </p>
+                                </div>
+
+                                <img src="/images/uploads/<%= users[ranNum].posts[0].image %>"
+                                    class="w-full object-cover" alt="Post Image">
+
+                                <div class="p-4 space-y-2">
+                                    <button class="text-xl">❤️ Like</button>
+
+                                    <% if (users[ranNum].posts[0].like) { %>
+                                        <p class="font-semibold">
+                                            <%= users[ranNum].posts[0].like.length %> likes
+                                        </p>
+                                        <% } else { %>
+                                            <p class="font-semibold">0 likes</p>
+                                            <% } %>
+
+                                                <p>
+                                                    <span class="font-semibold">
+                                                        <%= users[ranNum].username %>
+                                                    </span>
+                                                    <%= users[ranNum].posts[0].title %>
+                                                </p>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+
+
+            </main>
+
+            <!-- Right Sidebar -->
+            <aside class="w-72 p-6 hidden md:block">
+                <!-- Logged in User Info -->
+                <div class="flex items-center space-x-4 mb-6">
+                    <img src="/images/uploads/<%=loguser.profileImage%>" class="w-12 h-12 rounded-full object-cover"
+                        alt="User">
+                    <div>
+                        <a href="/profile" class="font-semibold">
+                            <%=loguser.username%>
+                        </a>
+                        <p class="text-sm text-zinc-400">
+                            <%=loguser.name%>
+                        </p>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-xs text-center text-gray-500 mt-10 mb-4 ml-72">
+            <p>Meta · About · Blog · Jobs · Help · API · Privacy · Terms · Locations · Threads · Contact Uploading &
+                Non-Users · Meta Verified</p>
+            <p class="mt-2">© 2025 Instagram from Meta</p>
+        </footer>
+    </div>
+
+    <% include ./partials/footer.ejs %>
