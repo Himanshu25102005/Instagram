@@ -1,0 +1,67 @@
+<% include ./partials/header.ejs %>
+
+<div class="bg-black text-white min-h-screen">
+  <!-- Navbar -->
+  <nav class="w-72 p-8 space-y-8 border-r border-zinc-700 hidden md:block fixed h-full">
+    <h1 class="text-4xl font-bold mb-12 font-serif">Instagram</h1>
+    <ul class="space-y-6 text-lg">
+      <li><a href="/home"><i class="ph ph-house mr-4"></i> Home</a></li>
+      <li><a href="/search"><i class="ph ph-magnifying-glass mr-4"></i> Search</a></li>
+      <li><a href="/feed"><i class="ph ph-compass mr-4"></i> Explore</a></li>
+      <li><a href="/create"><i class="ph ph-plus-square mr-4"></i> Create</a></li>
+      <li><a href="/profile"><i class="ph ph-user mr-4"></i> Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Search Content -->
+  <main class="ml-72 p-8">
+    <!-- Heading -->
+    <h2 class="text-2xl font-semibold mb-4">Search</h2>
+
+    <!-- Search Bar -->
+    <form action="/search" method="get" class="mb-6">
+      <input type="text" name="searchname" placeholder="Search..."
+        class="w-full max-w-md bg-zinc-800 border border-zinc-700 rounded-lg p-3 text-white placeholder-zinc-400 focus:ring-2 focus:ring-blue-500">
+    </form>
+
+    <!-- Search Results -->
+    <section class="space-y-4">
+      <!-- Example result block - This will be dynamic later when you add EJS looping -->
+      <div class="flex items-center justify-between bg-zinc-900 rounded p-3 hover:bg-zinc-800 transition">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-full overflow-hidden">
+            <img src="/images/uploads/defaultProfile.png" alt="User" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <p class="font-medium">_nisshhh_02</p>
+            <p class="text-xs text-zinc-400">Nishika Chawla</p>
+          </div>
+        </div>
+        <button class="text-sm text-blue-500 hover:underline">Remove</button>
+      </div>
+
+      <div class="flex items-center justify-between bg-zinc-900 rounded p-3 hover:bg-zinc-800 transition">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-full overflow-hidden">
+            <img src="/images/uploads/defaultProfile.png" alt="User" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <p class="font-medium">reasonswhyamsingle_</p>
+            <p class="text-xs text-zinc-400">Nishi</p>
+          </div>
+        </div>
+        <button class="text-sm text-blue-500 hover:underline">Remove</button>
+      </div>
+
+      <!-- End of result block -->
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-xs text-center text-gray-500 mt-10 mb-4 ml-72">
+    <p>Meta · About · Blog · Jobs · Help · API · Privacy · Terms · Locations · Threads · Contact Uploading & Non-Users · Meta Verified</p>
+    <p class="mt-2">© 2025 Instagram from Meta</p>
+  </footer>
+</div>
+
+<% include ./partials/footer.ejs %>

@@ -126,4 +126,14 @@ router.get("/feed", isloggedin, async (req, res) => {
   res.render("feed", {users});
 });
 
+router.get("/search", isloggedin, async (req, res) => {
+
+  
+
+  const users = await userModel.find().populate("posts");
+  res.render("search", {users});
+});
+
+
+
 module.exports = router;
