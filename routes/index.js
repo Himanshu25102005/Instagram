@@ -120,20 +120,31 @@ router.post("/create", isloggedin, upload.single("image"), async (req, res) => {
 });
 
 router.get("/feed", isloggedin, async (req, res) => {
-
   const users = await userModel.find().populate("posts");
   /* console.log(users) */
-  res.render("feed", {users});
+  res.render("feed", { users });
 });
 
 router.get("/search", isloggedin, async (req, res) => {
+  const users = await userModel.find();
 
-  
+  let query = req.query.searchname;
 
-  const users = await userModel.find().populate("posts");
-  res.render("search", {users});
+  let results = null;
+  let error = null;
+
+  if (query) {
+    results = await userModel.find({
+      username: { $regex: query, $options: "i" }
+    });
+
+    if (!results) {
+    error = "No Such User Found";
+  }
+
+  }
+
+  res.render("search", { users, results, error });
 });
-
-
 
 module.exports = router;
