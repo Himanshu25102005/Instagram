@@ -95,6 +95,21 @@ Your exact project architecture looks like this:
 ![Profile Page](screenshots/scs2.png)
 
 ---
+### 👤 Home Page:
+
+![Profile Page](screenshots/scs3.png)
+
+---
+### 👤 Search Page:
+
+![Profile Page](screenshots/scs4.png)
+
+---
+### 👤 Explore Page:
+
+![Profile Page](screenshots/scs5.png)
+
+---
 
 ## 🛠️ Installation & Local Setup
 ## 🛠️ Installation
