@@ -23,38 +23,45 @@
                 <div class="flex space-x-4 overflow-x-auto mb-6 scrollbar-hide">
                     <!-- Story 1 -->
                     <div class="flex flex-col items-center">
-                        <img src="/images/uploads/story1.jpg" alt="Story"
+                        <img src="/images/uploads/<%= users[2].profileImage %>" alt="Story"
                             class="w-14 h-14 rounded-full border-2 border-pink-500 p-0.5">
-                        <p class="text-xs mt-1">jagrat.shiv...</p>
+                        <p class="text-xs mt-1">
+                            <%= users[2].username %>
+                        </p>
                     </div>
                     <!-- Story 2 -->
                     <div class="flex flex-col items-center">
-                        <img src="/images/uploads/story2.jpg" alt="Story"
+                        <img src="/images/uploads/<%= users[0].profileImage %>" alt="Story"
                             class="w-14 h-14 rounded-full border-2 border-pink-500 p-0.5">
-                        <p class="text-xs mt-1">himanshi.0...</p>
+                        <p class="text-xs mt-1">
+                            <%= users[0].username %>
+                        </p>
                     </div>
                     <!-- Story 3 -->
                     <div class="flex flex-col items-center">
-                        <img src="/images/uploads/story3.jpg" alt="Story"
+                        <img src="/images/uploads/<%= users[1].profileImage %>" alt="Story"
                             class="w-14 h-14 rounded-full border-2 border-pink-500 p-0.5">
-                        <p class="text-xs mt-1">maisa.may...</p>
+                        <p class="text-xs mt-1">
+                            <%= users[1].username %>
+                        </p>
                     </div>
                     <!-- Add More Stories -->
                 </div>
 
 
                 <!-- Feed Posts -->
-                <% let totalUsers=users.length; let numberOfPosts=Math.min(5, totalUsers); // If users < 5, adjust let
-                    selectedIndexes=[]; while (selectedIndexes.length < numberOfPosts) { let
-                    ranNum=Math.floor(Math.random() * totalUsers); if (!selectedIndexes.includes(ranNum) &&
-                    users[ranNum].posts.length> 0) {
+                <% const totalUsers=users.length; const numberOfPosts=Math.min(5, totalUsers); const selectedIndexes=[];
+                    while (selectedIndexes.length < numberOfPosts) { const ranNum=Math.floor(Math.random() *
+                    totalUsers); if (!selectedIndexes.includes(ranNum) && users[ranNum].posts.length> 0) {
                     selectedIndexes.push(ranNum);
                     }
                     }
                     %>
 
                     <div class="space-y-8">
-                        <% selectedIndexes.forEach((ranNum)=> { %>
+                        <% selectedIndexes.forEach((ranNum)=> {
+                            let postIndex = Math.floor(Math.random() * users[ranNum].posts.length);
+                            %>
                             <div class="bg-zinc-900 rounded-lg overflow-hidden shadow-md">
                                 <div class="p-4 flex items-center space-x-3">
                                     <img src="/images/uploads/<%= users[ranNum].profileImage %>"
@@ -64,15 +71,15 @@
                                     </p>
                                 </div>
 
-                                <img src="/images/uploads/<%= users[ranNum].posts[0].image %>"
+                                <img src="/images/uploads/<%= users[ranNum].posts[postIndex].image %>"
                                     class="w-full object-cover" alt="Post Image">
 
                                 <div class="p-4 space-y-2">
                                     <button class="text-xl">❤️ Like</button>
 
-                                    <% if (users[ranNum].posts[0].like) { %>
+                                    <% if (users[ranNum].posts[postIndex].like) { %>
                                         <p class="font-semibold">
-                                            <%= users[ranNum].posts[0].like.length %> likes
+                                            <%= users[ranNum].posts[postIndex].like.length %> likes
                                         </p>
                                         <% } else { %>
                                             <p class="font-semibold">0 likes</p>
@@ -82,12 +89,13 @@
                                                     <span class="font-semibold">
                                                         <%= users[ranNum].username %>
                                                     </span>
-                                                    <%= users[ranNum].posts[0].title %>
+                                                    <%= users[ranNum].posts[postIndex].title %>
                                                 </p>
                                 </div>
                             </div>
                             <% }) %>
                     </div>
+
 
 
             </main>
